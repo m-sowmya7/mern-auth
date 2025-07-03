@@ -22,8 +22,8 @@ export function Login() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-black">
-            <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-black p-4 md:rounded-2xl md:p-8">
+        <div className="min-h-screen flex items-center justify-center bg-white text-black dark:bg-black dark:text-white">
+            <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white text-black dark:bg-black dark:text-white p-4 md:rounded-2xl md:p-8">
                 <form className="my-8 space-y-6" onSubmit={handleLogin}>
                     <div className="mb-4 flex flex-col space-y-2">
                         <LabelInputContainer>

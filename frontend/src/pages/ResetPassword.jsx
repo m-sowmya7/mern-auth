@@ -34,10 +34,10 @@ export const ResetPassword = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-black">
-            <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-black p-4 md:rounded-2xl md:p-8">
+            <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-gray-100 dark:bg-black p-4 md:rounded-2xl md:p-8">
                 <form className="my-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="mb-6">
-                        <h2 className="text-3xl font-bold mb-2 text-center text-white bg-clip-text">
+                        <h2 className="text-3xl font-bold mb-2 text-center tezt-black dark:text-white bg-clip-text">
                             Reset Password
                         </h2>
                         <p className="text-center text-gray-400">
@@ -63,7 +63,7 @@ export const ResetPassword = () => {
                         required
                     />
                     <button
-                        className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+                        className="group/btn relative block h-10 w-full rounded-md bg-neutral-600 font-medium text-white dark:text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
                         type="submit"
                         disabled={isLoading}
                     >

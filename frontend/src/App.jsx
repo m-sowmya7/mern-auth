@@ -9,8 +9,8 @@ import {ResetPassword} from "./pages/ResetPassword.jsx";
 import {Dashboard} from "./pages/Dashboard.jsx";
 
 import { Toaster } from "react-hot-toast";
+import { ThemeToggle } from "./components/ThemeToggle.jsx";
 import { useAuthStore } from "./store/authStore";
-
 // protect routes that require authentication
 const ProtectedRoute = ({ children }) => {
 	const { isAuthenticated, user } = useAuthStore();
@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
 		return <Navigate to='/login' replace />;
 	}
 
-	if (!user.isVerified) {
+	if (!user?.isVerified) {
 		return <Navigate to='/verify-email' replace />;
 	}
 
@@ -30,7 +30,7 @@ const ProtectedRoute = ({ children }) => {
 const RedirectAuthenticatedUser = ({ children }) => {
 	const { isAuthenticated, user } = useAuthStore();
 
-	if (isAuthenticated && user.isVerified) {
+	if (isAuthenticated && user && user?.isVerified) {
 		return <Navigate to='/' replace />;
 	}
 
@@ -48,6 +48,7 @@ function App() {
 
 	return (
 		<div>
+			<ThemeToggle />
 			<Routes>
 				<Route
 					path='/'

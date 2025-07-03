@@ -21,6 +21,7 @@
     "mailtrap": "^4.1.0",
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.1",
+    "nodemailer": "^7.0.4",
     "path": "^0.12.7"
   },
   "devDependencies": {

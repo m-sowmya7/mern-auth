@@ -17,15 +17,15 @@ export const ForgotPassword = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-black">
-            <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-black p-4 md:rounded-2xl md:p-8">
+        <div className="min-h-screen flex items-center justify-center bg-white text-black dark:bg-black dark:text-white">
+            <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white text-black p-4 md:rounded-2xl md:p-8 dark:bg-black dark:text-white">
                 <div className="my-8">
-                    <h2 className="text-3xl font-bold mb-6 text-center text-white bg-clip-text">
+                    <h2 className="text-3xl font-bold mb-6 text-center">
                         Forgot Password
                     </h2>
                     {!isSubmitted ? (
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <p className="text-gray-300 mb-6 text-center">
+                            <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
                                 Enter your email address and we'll send you a link to reset your password.
                             </p>
                             <Input
@@ -46,17 +46,17 @@ export const ForgotPassword = () => {
                         </form>
                     ) : (
                         <div className="text-center">
-                            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div className="w-16 h-16 bg-gray-100 dark:bg-white rounded-full flex items-center justify-center mx-auto mb-4">
                                 <Mail className="h-8 w-8 text-black" />
                             </div>
-                            <p className="text-gray-300 mb-6">
+                            <p className="text-gray-600 dark:text-gray-300 mb-6">
                                 If an account exists for {email}, you will receive a password reset link shortly.
                             </p>
                         </div>
                     )}
                 </div>
-                <div className="px-8 py-4flex justify-center rounded-b-2xl">
-                    <Link to={"/login"} className="text-sm text-white hover:underline flex items-center">
+                <div className="px-8 py-4 flex justify-center rounded-b-2xl">
+                    <Link to={"/login"} className="text-sm text-black hover:underline flex items-center dark:text-white">
                         <ArrowLeft className="h-4 w-4 mr-2" /> Back to Login
                     </Link>
                 </div>
