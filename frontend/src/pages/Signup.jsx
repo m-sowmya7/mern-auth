@@ -31,6 +31,9 @@ const BottomGradient = () => {
     );
 };
 
+const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:5000/auth/google"; // Your backend OAuth start URL
+};
 export function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -109,7 +112,8 @@ export function Signup() {
                             className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
                             type="button"
                             onClick={() => {
-                                console.log("Google button clicked");
+                                // console.log("Google button clicked");
+                                handleGoogleLogin();
                             }}
                         >
                             <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />

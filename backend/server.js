@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import supertokens from './config/supertokens.js';
+import googleAuthRoutes from "./routes/googleAuth.route.js";
 import dotenv from 'dotenv';
 
 import { connectDB } from './db/connectDB.js';
@@ -18,6 +20,8 @@ app.use(express.json()); // allows us to parse incoming requests:req.body
 app.use(cookieParser()); // allows us to parse incoming cookies
 
 app.use("/api/auth", authRoutes);
+app.use("/auth", googleAuthRoutes);
+supertokens;
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "/frontend/dist")));

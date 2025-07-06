@@ -79,13 +79,54 @@ export const verifyEmail = async(req, res) => {
 
 };
 
+// export const login = async (req, res) => {
+// 	const { email, password } = req.body;
+// 	try {
+// 		const user = await User.findOne({ email });
+// 		if (!user) {
+// 			return res.status(400).json({ success: false, message: "Invalid credentials" });
+// 		}
+// 		const isPasswordValid = await bcryptjs.compare(password, user.password);
+// 		if (!isPasswordValid) {
+// 			return res.status(400).json({ success: false, message: "Invalid credentials" });
+// 		}
+
+// 		generateTokenAndSetCookie(res, user._id);
+
+// 		user.lastLogin = new Date();
+// 		await user.save();
+
+// 		res.status(200).json({
+// 			success: true,
+// 			message: "Logged in successfully",
+// 			user: {
+// 				...user._doc,
+// 				password: undefined,
+// 			},
+// 		});
+// 	} catch (error) {
+// 		console.log("Error in login ", error);
+// 		res.status(400).json({ success: false, message: error.message });
+// 	}
+// };
 export const login = async (req, res) => {
 	const { email, password } = req.body;
+
 	try {
 		const user = await User.findOne({ email });
+
 		if (!user) {
 			return res.status(400).json({ success: false, message: "Invalid credentials" });
 		}
+
+		// ❌ Block Google users from logging in with password
+		if (user.authProvider === "google") {
+			return res.status(400).json({
+				success: false,
+				message: "This account was created with Google. Please use Google Sign-In.",
+			});
+		}
+
 		const isPasswordValid = await bcryptjs.compare(password, user.password);
 		if (!isPasswordValid) {
 			return res.status(400).json({ success: false, message: "Invalid credentials" });
@@ -106,9 +147,10 @@ export const login = async (req, res) => {
 		});
 	} catch (error) {
 		console.log("Error in login ", error);
-		res.status(400).json({ success: false, message: error.message });
+		res.status(500).json({ success: false, message: error.message });
 	}
 };
+
 
 export const logout = async (req, res) => {
 	res.clearCookie("token");
@@ -177,8 +219,16 @@ export const resetPassword = async (req, res) => {
 export const checkAuth = async (req, res) => {
 	try {
 		const user = await User.findById(req.userId).select("-password");
+		console.log("User in checkAuth: ", user);
+		console.log("User ID in checkAuth: ", req.userId);
 		if (!user) {
 			return res.status(400).json({ success: false, message: "User not found" });
+		}
+		if (user.authProvider === 'google') {
+			console.log("Google-authenticated user");
+			// password will be undefined or empty
+		} else {
+			console.log("Locally registered user");
 		}
 
 		res.status(200).json({ success: true, user });
