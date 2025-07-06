@@ -8,8 +8,8 @@ import { protect } from "../middleware/protect.js";
 const router = express.Router();
 
 
-router.get('/check-auth', verifyToken, checkAuth);
-router.get("/api/auth/check-auth", protect, checkAuth);
+// router.get('/check-auth', verifyToken, checkAuth);
+router.get("/check-auth", protect, checkAuth);
 
 router.post('/signup', singup);
 router.post('/login', login);

@@ -218,22 +218,18 @@ export const resetPassword = async (req, res) => {
 
 export const checkAuth = async (req, res) => {
 	try {
+		console.log("🔑 User ID from token:", req.userId);
+
 		const user = await User.findById(req.userId).select("-password");
-		console.log("User in checkAuth: ", user);
-		console.log("User ID in checkAuth: ", req.userId);
+		console.log("👀 Fetched user:", user);
+
 		if (!user) {
 			return res.status(400).json({ success: false, message: "User not found" });
-		}
-		if (user.authProvider === 'google') {
-			console.log("Google-authenticated user");
-			// password will be undefined or empty
-		} else {
-			console.log("Locally registered user");
 		}
 
 		res.status(200).json({ success: true, user });
 	} catch (error) {
-		console.log("Error in checkAuth ", error);
+		console.error("❌ checkAuth error:", error);
 		res.status(400).json({ success: false, message: error.message });
 	}
 };
